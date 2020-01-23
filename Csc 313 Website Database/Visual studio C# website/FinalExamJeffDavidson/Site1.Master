@@ -1,0 +1,45 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site1.master.cs" Inherits="FinalExamJeffDavidson.Site1" %>
+
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+	<link href="Style/StyleSheet1.css" rel="stylesheet" />
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="form1" runat="server">
+
+        <header>
+            Dog Stairs Inc
+        </header>
+
+        <nav>
+            <a href="default.aspx">Home Page</a> &nbsp; &nbsp;&nbsp;
+            <a href="DataQueryWebPage.aspx">Check Order</a> &nbsp; &nbsp;&nbsp;
+            <a href="DataInsertWebPage.aspx">Create Order</a> &nbsp; &nbsp;&nbsp;
+        </nav>
+        
+        
+        <main>
+            
+            
+
+            <div id="ContentPLaceHolder">
+                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                </asp:ContentPlaceHolder>
+            </div>
+
+        </main>
+        
+        <footer>
+            <p>&copy; 2019 EKU CSC 313</p>
+            <p>Jeff Davidson Take Home Exam 2</p>
+            <p>11-17-2019a</p>
+        </footer>
+
+    </form>
+</body>
+</html>
