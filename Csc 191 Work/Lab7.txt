@@ -1,0 +1,160 @@
+
+package javaapplication1;
+import java.util.Scanner;
+class Recursion{
+    private int[] a;
+    
+    //constructor
+    public Recursion(int[] array){
+        a = array;
+    }
+    
+    //some recursive methods for arrays
+    // n in these methods will be the number of elements to affect
+    
+    //print array forward
+    public void printF(int n){
+        if(n>0){
+            printF(n-1);
+            System.out.print(a[n-1]);
+        }
+    }
+    
+    public void printL(int n){
+        
+        
+    }
+    
+    //print array backwards
+    public void printB(int n){
+        if(n>0){
+            System.out.print(a[n-1]);
+            printB(n-1);
+        }
+    }
+    
+    //largest element
+    public int maxA(int n){
+        if(n==1)
+            return a[0];
+        return Math.max(maxA(n-1), a[n-1]);
+    }
+    
+    
+    
+    //reversing an array - left & right for parameters
+    public void reverseA(int l, int r){
+        if(l<r){
+            int t = a[l];
+            a[l] = a[r];
+            a[r] = t;
+            reverseA(l+1,r-1);
+        }
+    }
+    
+    //mode of the int array - int that appears most often
+    public int mode(int n){
+        if(n==1)
+            return a[0];
+        int m = mode(n-1);
+        int c1 = 0, c2 = 1;
+        for (int i = 0; i < n-1; i++) {
+            if(a[i]==m)
+                c1++;
+            else if(a[i]==a[n-1])
+                c2++;
+        }
+        if (c1>c2)
+            return m;
+        return a[n-1];
+    }
+    
+    public int minA (int n){
+        if(n==1){
+            return a[0];
+        }else{
+            return Math.min(minA(n-1), a[n-1]);
+        }
+    }
+   
+    public void rotateLeft( int n){
+        int temp = a[0];
+        for (int i = 0; i < n-1; i++) {
+            a[i]=a[i+1];
+        }
+        a[n-1]= temp;
+    }
+    
+    public void rotateRight( int n ){
+        int temp = a[n-1];
+        for (int i = n-1; i >1; i--) {
+            a[i]=a[i-1];
+        }
+        a[0]= temp;
+    }
+    
+    public boolean sortCheck( int[] a, int n, int s ){
+        if(n==s-1)
+            return true;
+        if(a[n]<=a[n+1])
+            return sortCheck(a,n+1,s);
+        else
+            return false;
+    }
+    
+}//close of class
+
+
+public class JavaApplication1 {
+  
+    public static void main(String[] args) {
+        int[] a = {1,2,3,4,5,6,7};
+        Recursion r = new Recursion(a);
+        
+        Scanner input = new Scanner(System.in);
+        System.out.println("Enter a number for the section of the array you want to check. ");
+        int n = input.nextInt();
+         
+        while(n>a.length || n<=0){
+            System.out.println("Enter a number between "+a.length+" and 1");
+            n = input.nextInt();
+        }
+        
+        r.printF(n);
+        System.out.println("");
+        r.printB(n);
+        System.out.println("");
+        System.out.println(r.maxA(n));
+        System.out.println("");
+        System.out.println("min is: "+r.minA(n));
+        System.out.println("");
+        System.out.println("is sorted: "+r.sortCheck(a,0,n));
+        System.out.println("");
+        System.out.print("rotate left ");    
+        r.printL(n);
+        System.out.println("");
+        r.printF(n);
+        
+        System.out.println("");
+        r.rotateRight(n);
+        System.out.println("");
+        System.out.print("rotate right: ");
+        r.printF(7);
+        System.out.println("");
+        
+        //r.reverseA(1, 5);
+        //r.printF(7);
+        //System.out.println("");
+        //int[] b = {1,1,2,2,3,4,5};
+        //Recursion r2 = new Recursion(b);
+        //System.out.println(r2.mode(5));
+        
+    }
+    
+}
+
+
+
+
+    
+

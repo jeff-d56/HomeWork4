@@ -1,0 +1,124 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+import java.util.Scanner;
+class PointList{
+    //data member
+    double points[][];
+    
+    //constructor
+    public PointList(int len){
+        points = new double[len][2];
+        
+        Scanner input = new Scanner(System.in);
+        for (int i = 0; i < len; i++) {
+            System.out.println("Enter the coordinates of a point:");
+            System.out.println("Enter the x value: ");
+            points[i][0] = input.nextDouble();
+            System.out.println("Enter the y value: ");
+            points[i][1] = input.nextDouble();
+        }
+    } //close constructor
+    
+    //test triangle
+    public void testTriangle(int size){
+        System.out.println("test");
+
+        int a = 0;
+        int b = 0;
+        for (int i = 0; i < size-1; i++) {
+            if(points[i][0]==points[i+1][0]){
+                a += 1;  
+            }
+            if(points[i][1]==points[i+1][1]){
+                b +=1;
+            }
+        }    
+            if(points[0][0]==points[size-1][0]){
+                a += 1;
+            }
+            if(points[0][1]==points[size-1][1]){
+                b += 1;
+            }
+            if(a==size || b==size){
+                System.out.println("no traingle possible");
+            }
+            if(a==size-2 && b==size-2){
+                System.out.println("Right Triangle");
+            }
+            if(b ==size-2 && a == 0){
+                System.out.println("Obtuse Triangle");
+            }
+            if(b==0 && a ==0){
+                System.out.println("Acute Triangle");
+            }
+        
+        
+        
+        
+        
+    }
+    
+    
+    //method to find distance between two points
+    public double distance(double x1, double y1, double x2, double y2){
+        return Math.sqrt((x1-x2)*(x1-x2)+(y1-y2)*(y1-y2));
+    }
+    
+    //find the pair of points that has the smallest distance between them
+    public void findClosestPair(int size){
+        int p1 = 0, p2 = 1;
+        
+        double shortDist = distance(points[p1][0], points[p1][1], points[p2][0], points[p2][1]);
+        
+        for (int i = 0; i < points.length; i++) {
+            for (int j = i+1; j < points.length; j++) {
+                double dist = distance(points[i][0], points[i][1], points[j][0], points[j][1]);
+                if(shortDist>dist){
+                    p1=i;
+                    p2=j;
+                    shortDist = dist;
+                }
+            }
+        }
+        System.out.println(p1 +"  "+p2);
+        System.out.println("The closest two points are ("+
+                points[p1][0]+", "+points[p1][1]+") and (" +
+                points[p2][0]+", "+points[p2][1]+")");
+        
+        System.out.println("outlier is: ");
+        int p3 = ((size-(p1+p2))-(size-3));
+        System.out.println("("+points[p3][0]+", "+points[p3][1]+")");
+        
+    }
+}
+
+public class JavaApplication1 {
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        System.out.println("How many points do you want to compare?");
+        int size = input.nextInt();
+        
+        PointList p1 = new PointList(size);
+        
+        double x1 = p1.points[0][0];
+        double y1 = p1.points[0][1];
+        double x2 = p1.points[1][0];
+        double y2 = p1.points[1][1];
+        
+        System.out.println("The distance between the first two points is "+p1.distance(x1,y1,x2,y2));
+        
+        p1.findClosestPair(size);
+        p1.testTriangle(size);
+    }
+    
+
+    
+}

@@ -1,0 +1,111 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package javaapplication1;
+
+import java.util.Scanner;
+import java.io.*;
+public class JavaApplication1 {
+    //range is from 96 to 122
+    public static void encode(String s, int key, int n){
+        if(n== -1){
+            
+        }else{
+            encode(s,5,n-1);
+            char b = s.charAt(n);
+            
+            //if(b == ' '){
+                //b =  96;
+            //}
+            int charA = b+key;
+                System.out.println(charA);
+                if((charA) > 122){
+                    
+                    int r = (charA)-123;
+                    int t = r+96;
+                    charA = t;
+                    System.out.println(charA);
+                
+            }
+            
+            //System.out.print(charA);
+            
+            System.out.print(Character.toString((char)(charA)));
+            
+            
+        }
+         
+    }
+    public static void main(String[] args) throws IOException{
+        //String FileContent = "attack at dawn";
+        File File = new File("c:\\CSC191\\attack.txt");
+        //encode(FileContent,5,FileContent.length()-1);
+        Scanner input = new Scanner(File);
+        while(input.hasNextLine()){
+        
+                String Text = input.nextLine();
+                encode(Text,7,Text.length()-1);
+                System.out.println("");
+            }
+        
+        /*int test;
+        for (test =96; test <= 122; test++) {
+            System.out.println( (char)test);
+            if(test == 122){
+                test = 96;
+            }
+        }*/
+        System.out.println("");
+        
+        /*for (int i = 0; i < FileContent.length(); i++) {
+            int n = 5;
+            char b = FileContent.charAt(i);
+            
+            if(b == ' '){
+                b =  96;
+            }
+            int charA = b+n;
+            while((charA) > 122){
+                if((charA) > 122){
+                    
+                    int r = (charA)-123;
+                    int t = r+96;
+                    charA = t;
+                    
+                }
+            }
+            System.out.print("");
+            //System.out.print(charA);
+            System.out.print("");
+            System.out.print(Character.toString((char)(charA)));
+        }*/
+        /*System.out.println("");
+        char a = 'w' + 5;
+        System.out.println(a);*/
+        
+        /*try{
+            File file = new File("c:\\CSC191\\attack.txt");
+               
+            Scanner input = new Scanner(file);
+            System.out.println(input.nextLine());   
+            System.out.println(input.nextLine());
+            System.out.println(input.nextLine());
+            System.out.println(input.nextLine());
+               
+            
+            while(input.hasNextLine()){
+                String a = input.nextLine();
+                encode(a,1,2);
+                
+                System.out.println(input.nextLine());    
+            }
+            
+            
+        } catch (IOException ex){
+            System.out.println("error");
+        }  */ 
+    }
+    
+}
